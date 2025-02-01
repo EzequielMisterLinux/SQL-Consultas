@@ -1,0 +1,31 @@
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sql1
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=A12345678b#
+      - MSSQL_PID=Developer
+      - MSSQL_AGENT_ENABLED=true
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+        reservations:
+          memory: 2G
+    ports:
+      - "1433:1433"
+    volumes:
+      - ./adventureworks_backup:/var/opt/mssql/backup
+      - sqlserver_data:/var/opt/mssql/data
+    healthcheck:
+      test: /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P "A12345678b#" -Q "SELECT 1" || exit 1
+      interval: 10s
+      timeout: 3s
+      retries: 10
+      start_period: 30s  
+    user: root  
+
+volumes:
+  sqlserver_data:
+    driver: local

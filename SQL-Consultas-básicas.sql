@@ -1,3 +1,4 @@
+-- Active: 1738446948923@@127.0.0.1@1433@AdventureWorks2022
 USE AdventureWorks2022
 
 --1 
@@ -46,7 +47,7 @@ SELECT * FROM HumanResources.Employee
 WHERE BirthDate  between '1969-01-01' and '1972-12-31'
 
 --11
-SELECT SUM(vacationHours)'Horas trabajo en vacación' ,SUM(VacationHours)*8 'total $ a pagar' 
+SELECT SUM(vacationHours)'Horas trabajo en vacaciï¿½n' ,SUM(VacationHours)*8 'total $ a pagar' 
 FROM HumanResources.Employee
 
 SELECT BusinessEntityID, VacationHours, VacationHours * 8.00 AS TotalPagar
